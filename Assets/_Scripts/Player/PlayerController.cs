@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform mainCam;
     [SerializeField] private float moveSpeed;
 
     [Header("Rotataion")]
@@ -38,11 +39,12 @@ public class PlayerController : MonoBehaviour
 
         if(moveDir.magnitude >= .1f)
         {
-            float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg + mainCam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(this.transform.eulerAngles.y, targetAngle, ref currentRotVelocity, smoothTime);
             this.transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            controller.Move(moveDir * moveSpeed * Time.deltaTime);
+            Vector3 dir = Quaternion.Euler(0f, targetAngle, 0f).normalized * Vector3.forward;
+            controller.Move(dir * moveSpeed * Time.deltaTime);
         }
     }
 

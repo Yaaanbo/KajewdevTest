@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager singleton;
 
     [Header("Item List")]
-    [SerializeField] private List<BaseItem> collectedItem = new List<BaseItem>();
+    [SerializeField] private List<ItemScriptable> collectedItem = new List<ItemScriptable>();
     private void Awake()
     {
         if (singleton == null)
@@ -16,12 +16,12 @@ public class InventoryManager : MonoBehaviour
             Destroy(this);
     }
 
-    public void AddItem(BaseItem _item)
+    public void AddItem(ItemScriptable _item)
     {
         collectedItem.Add(_item);
     }
 
-    public void RemoveItem(BaseItem _item)
+    public void RemoveItem(ItemScriptable _item)
     {
         collectedItem.Remove(_item);
     }
