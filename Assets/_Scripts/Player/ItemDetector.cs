@@ -80,7 +80,7 @@ public class ItemDetector : MonoBehaviour
 
             //Take Item
             if (Input.GetKeyDown(KeyCode.F))
-                detectedItem.transform.GetComponent<ItemBehaviour>().OnTaken();
+                detectedItem.transform.GetComponent<BaseItem>().OnTaken();
         }
         else
         {
