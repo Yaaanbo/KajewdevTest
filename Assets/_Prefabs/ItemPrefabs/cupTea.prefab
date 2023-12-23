@@ -121,5 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f657f1867b068c34f8f49b3b16fe61c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: b32c0a121fae5474987ebe63a148b422, type: 2}
+  <item>k__BackingField: {fileID: 11400000, guid: b32c0a121fae5474987ebe63a148b422, type: 2}
   rotationSpeed: 100
+  buffDuration: 3
+  speedMultiplier: 1.5

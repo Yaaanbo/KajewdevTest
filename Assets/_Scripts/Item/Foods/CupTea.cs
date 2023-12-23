@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CupTea : BaseItem
 {
+    [field: SerializeField] public float buffDuration { get; } = 3f;
+    [field: SerializeField] public float speedMultiplier { get; } = 1.5f;
+
     public override void OnTaken()
     {
         base.OnTaken();
@@ -13,6 +16,7 @@ public class CupTea : BaseItem
     public override void OnUse()
     {
         base.OnUse();
+        StartCoroutine(ItemEffectManager.instance.IncreasePlayerSpeed(buffDuration, speedMultiplier));
         Debug.Log("The tea has been drunk");
     }
 }

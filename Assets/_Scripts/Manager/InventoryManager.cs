@@ -8,10 +8,10 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager singleton;
 
     [Header("Item List")]
-    [SerializeField] private List<ItemScriptable> collectedItem = new List<ItemScriptable>();
+    [SerializeField] private List<BaseItem> collectedItem = new List<BaseItem>();
 
     //UI Events
-    public Action<List<ItemScriptable>> OpenInventoryUI;
+    public Action<List<BaseItem>> OpenInventoryUI;
 
     private void Awake()
     {
@@ -27,12 +27,12 @@ public class InventoryManager : MonoBehaviour
             OpenInventoryUI?.Invoke(collectedItem);
     }
 
-    public void AddItem(ItemScriptable _item)
+    public void AddItem(BaseItem _item)
     {
         collectedItem.Add(_item);
     }
 
-    public void RemoveItem(ItemScriptable _item)
+    public void RemoveItem(BaseItem _item)
     {
         collectedItem.Remove(_item);
     }

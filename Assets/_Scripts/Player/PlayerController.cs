@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform mainCam;
-    [SerializeField] private float moveSpeed;
+    [field: SerializeField] public float moveSpeed { get; set; } = 7f;
 
     [Header("Rotataion")]
     [SerializeField] private float smoothTime;

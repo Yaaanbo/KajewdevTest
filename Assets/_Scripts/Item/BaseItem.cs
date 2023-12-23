@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class BaseItem : MonoBehaviour
 {
-    [Header("Scriptable item")]
-    [SerializeField] protected ItemScriptable item;
+    [field : SerializeField] public ItemScriptable item { get; set; }
 
     [Header("Item Rotatin")]
     [SerializeField] protected float rotationSpeed = 100f;
@@ -18,12 +17,12 @@ public abstract class BaseItem : MonoBehaviour
     public virtual void OnTaken()
     {
         this.gameObject.SetActive(false);
-        InventoryManager.singleton.AddItem(this.item);
+        InventoryManager.singleton.AddItem(this);
     }
 
     public virtual void OnUse()
     {
-        InventoryManager.singleton.RemoveItem(this.item);
+        InventoryManager.singleton.RemoveItem(this);
     }
 
     private void RotateItem()

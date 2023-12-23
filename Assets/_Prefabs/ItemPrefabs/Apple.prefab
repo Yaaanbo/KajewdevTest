@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d018b44ce46c3742b2e4d2c8fe3bc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: a18b0b743a6f01c428328124fa869f31, type: 2}
+  <item>k__BackingField: {fileID: 11400000, guid: a18b0b743a6f01c428328124fa869f31, type: 2}
   rotationSpeed: 100
+  healthBonus: 20
 --- !u!135 &7626000534119019656
 SphereCollider:
   m_ObjectHideFlags: 0
