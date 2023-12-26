@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private CharacterController controller;
+    [SerializeField] private FixedJoystick joystick;
     [SerializeField] private Transform mainCam;
     [field: SerializeField] public float moveSpeed { get; set; } = 7f;
 
@@ -28,13 +29,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MovementHandler();
-        JumpingHandler();
+        GravityHandler();
     }
 
     private void MovementHandler()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = joystick.Horizontal;
+        float vertical = joystick.Vertical;
         Vector3 moveDir = new Vector3(horizontal, 0f, vertical).normalized;
 
         if(moveDir.magnitude >= .1f)
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void JumpingHandler()
+    private void GravityHandler()
     {
         isGrounded = Physics.CheckSphere(groundChecker.position, groundCheckerRadius, groundMask);
 
@@ -58,11 +59,12 @@ public class PlayerController : MonoBehaviour
         jumpingVelocity.y += gravity * Time.deltaTime;
 
         controller.Move(jumpingVelocity * Time.deltaTime);
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
+    public void JumpHandler()
+    {
+        if(isGrounded)
             jumpingVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
     }
 
     private void OnDrawGizmos()

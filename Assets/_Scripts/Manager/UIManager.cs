@@ -131,6 +131,7 @@ public class UIManager : MonoBehaviour
 
             //Activate button object and add OnTaken listener
             interactButton.gameObject.SetActive(true);
+            interactButton.onClick.RemoveAllListeners();
             interactButton.onClick.AddListener(() => { _interactableItem.OnTaken(); });
         };
         itemDetector.OnItemIntakable -= () =>
