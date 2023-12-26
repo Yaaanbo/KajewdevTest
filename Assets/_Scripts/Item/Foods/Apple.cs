@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Apple : BaseItem
 {
-    [SerializeField] private float healthBonus = 20f;
-    public override void OnTaken()
-    {
-        base.OnTaken();
-        Debug.Log("The apple has been taken");
-    }
+    [Header("Item Effect Attributes")]
+    [SerializeField] private float healthBonusPercentage = 20f;
 
     public override void OnUse()
     {
         base.OnUse();
-        ItemEffectManager.instance.AddHealth(healthBonus);
-        Debug.Log("Apple has been eaten");
+        ItemEffectManager.instance.AddHealthPercentage(healthBonusPercentage);
+        Debug.Log("Apple has been eaten, health +" + healthBonusPercentage +"%");
     }
 }

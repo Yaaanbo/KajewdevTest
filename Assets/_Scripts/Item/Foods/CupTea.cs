@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class CupTea : BaseItem
 {
-    [field: SerializeField] public float buffDuration { get; } = 3f;
-    [field: SerializeField] public float speedMultiplier { get; } = 1.5f;
-
-    public override void OnTaken()
-    {
-        base.OnTaken();
-        Debug.Log("The tea has been taken");
-    }
+    [Header("Item Effect Attributes")]
+    [SerializeField] private float buffDuration = 3f;
+    [SerializeField] private float speedMultiplier = 1.5f;
 
     public override void OnUse()
     {
         base.OnUse();
-        StartCoroutine(ItemEffectManager.instance.IncreasePlayerSpeed(buffDuration, speedMultiplier));
+        ItemEffectManager.instance.IncreaseRunSpeed(buffDuration, speedMultiplier);
         Debug.Log("The tea has been drunk");
     }
 }

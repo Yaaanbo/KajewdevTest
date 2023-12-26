@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100;
+    [field: SerializeField] public float maxHealth { get; private set; } = 100;
 
     public float health { get; set; }
-    public float MaxHealth { get { return maxHealth; } }
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+    }
+
+    public void OnDead()
+    {
+        Debug.Log("Player Dead");
     }
 }

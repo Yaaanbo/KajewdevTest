@@ -78,31 +78,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d480791c4164414c9c2f5e737daf433, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3806260035428418616}
+      addedObject: {fileID: 7626000534119019656}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d480791c4164414c9c2f5e737daf433, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7626000534119019656}
+      addedObject: {fileID: 3806260035428418616}
   m_SourcePrefab: {fileID: 100100000, guid: 4d480791c4164414c9c2f5e737daf433, type: 3}
 --- !u!1 &3845795870474491457 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d480791c4164414c9c2f5e737daf433, type: 3}
   m_PrefabInstance: {fileID: 4151873717540416272}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3806260035428418616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3845795870474491457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d018b44ce46c3742b2e4d2c8fe3bc97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <item>k__BackingField: {fileID: 11400000, guid: a18b0b743a6f01c428328124fa869f31, type: 2}
-  rotationSpeed: 100
-  healthBonus: 20
 --- !u!135 &7626000534119019656
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +109,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.09814727
   m_Center: {x: 0, y: 0.09537669, z: 0}
+--- !u!114 &3806260035428418616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845795870474491457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d018b44ce46c3742b2e4d2c8fe3bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <item>k__BackingField: {fileID: 11400000, guid: a18b0b743a6f01c428328124fa869f31, type: 2}
+  rotationSpeed: 100
+  healthBonusPercentage: 20

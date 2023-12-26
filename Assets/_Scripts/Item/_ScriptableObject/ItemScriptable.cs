@@ -8,7 +8,4 @@ public class ItemScriptable : ScriptableObject
     [Header("Item details")]
     public string itemName;
     public Sprite itemSprite;
-
-    [Header("Reference")]
-    public GameObject itemPrefabs;
 }

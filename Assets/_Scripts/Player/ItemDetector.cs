@@ -18,7 +18,7 @@ public class ItemDetector : MonoBehaviour
     private Transform detectedItem;
 
     //Events
-    public Action OnItemTakable;
+    public Action<BaseItem> OnItemTakable;
     public Action OnItemIntakable;
 
     // Start is called before the first frame update
@@ -34,7 +34,7 @@ public class ItemDetector : MonoBehaviour
 
     private IEnumerator FindItemCoroutine()
     {
-        WaitForSeconds waitTime = new WaitForSeconds(.05f);
+        WaitForSeconds waitTime = new WaitForSeconds(.01f);
 
         while (true)
         {
@@ -58,34 +58,46 @@ public class ItemDetector : MonoBehaviour
                 float distToItem = Vector3.Distance(this.transform.position, detectedItem.position);
 
                 if (!Physics.Raycast(this.transform.position, dirToItem, distToItem, obstacleMask))
+                {
                     isItemInReach = true;
+
+                    //Activate and update Interactable UI
+                    OnItemTakable?.Invoke(detectedItem.transform.GetComponent<BaseItem>());
+                }
+                    
                 else
+                {
                     isItemInReach = false;
 
+                    //Deactivate and update Interactable UI
+                    OnItemIntakable?.Invoke();
+                }
             }
             else
+            {
                 isItemInReach = false;
+
+                //Deactivate and update Interactable UI
+                OnItemIntakable?.Invoke();
+            }
 
         }
         else if (isItemInReach)
+        {
             isItemInReach = false;
+
+            //Deactivate and update Interactable UI
+            OnItemIntakable?.Invoke();
+        }
     }
 
     private void ItemInReachHandler()
     {
         if (isItemInReach)
         {
-            //Activate Interactable UI
-            OnItemTakable?.Invoke();
-
             //Take Item
             if (Input.GetKeyDown(KeyCode.F))
                 detectedItem.transform.GetComponent<BaseItem>().OnTaken();
-        }
-        else
-        {
-            //Deactivate Interactable UI
-            OnItemIntakable?.Invoke();
         }
     }
 }

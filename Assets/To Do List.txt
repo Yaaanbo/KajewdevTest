@@ -1,0 +1,6 @@
+- Heal Over Time	//Done
+- Decrease Speed	//Done
+
+- Interactable Item UI	//Done
+
+- Stacking Inventory
