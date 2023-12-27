@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour
         {
             inventoryUI.SetActive(true);
 
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             foreach(Transform child in itemUIObjParent)
             {
                 Destroy(child.gameObject);
@@ -67,7 +70,7 @@ public class UIManager : MonoBehaviour
             Image itemImage = buttonTransform.GetChild(1).GetComponent<Image>();
 
             //Assign button components according to item component
-            itemNameText.text = _interactableItem.item.itemName;
+            itemNameText.text = "(F) " + _interactableItem.item.itemName;
             itemImage.sprite = _interactableItem.item.itemSprite;
 
             //Activate button object and add OnTaken listener
@@ -87,6 +90,9 @@ public class UIManager : MonoBehaviour
         inventoryManager.OpenInventoryUI -= (List<BaseItem> _itemToDisplay) =>
         {
             inventoryUI.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             foreach (Transform child in itemUIObjParent)
             {
@@ -126,7 +132,7 @@ public class UIManager : MonoBehaviour
             Image itemImage = buttonTransform.GetChild(1).GetComponent<Image>();
 
             //Assign button components according to item component
-            itemNameText.text = _interactableItem.item.itemName;
+            itemNameText.text = "(F) " + _interactableItem.item.itemName;
             itemImage.sprite = _interactableItem.item.itemSprite;
 
             //Activate button object and add OnTaken listener

@@ -7,6 +7,11 @@ public class PlayerHealth : MonoBehaviour
     [field: SerializeField] public float maxHealth { get; private set; } = 100;
 
     public float health { get; set; }
+
+    [Header("On Player Dead")]
+    [SerializeField] private GameObject originalBody;
+    [SerializeField] private GameObject ragDollBody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void OnDead()
     {
-        Debug.Log("Player Dead");
+        originalBody.SetActive(false);
+        ragDollBody.SetActive(true);
     }
 }

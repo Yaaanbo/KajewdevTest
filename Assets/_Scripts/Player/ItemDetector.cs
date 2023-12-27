@@ -21,29 +21,13 @@ public class ItemDetector : MonoBehaviour
     public Action<BaseItem> OnItemTakable;
     public Action OnItemIntakable;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(FindItemCoroutine());
-    }
-
     private void Update()
     {
+        ItemCheckHandler();
         ItemInReachHandler();
     }
 
-    private IEnumerator FindItemCoroutine()
-    {
-        WaitForSeconds waitTime = new WaitForSeconds(.01f);
-
-        while (true)
-        {
-            yield return waitTime;
-            CheckItem();
-        }
-    }
-
-    private void CheckItem()
+    private void ItemCheckHandler()
     {
         Collider[] itemCol = Physics.OverlapSphere(this.transform.position, viewRadius, itemMask);
 

@@ -23,8 +23,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-            OpenInventoryUI?.Invoke(collectedItem);
+        if (Input.GetKeyDown(KeyCode.I))
+            OpenInventory();
     }
 
     public void AddItem(BaseItem _item)
@@ -35,5 +35,10 @@ public class InventoryManager : MonoBehaviour
     public void RemoveItem(BaseItem _item)
     {
         collectedItem.Remove(_item);
+    }
+
+    public void OpenInventory()
+    {
+        OpenInventoryUI?.Invoke(collectedItem);
     }
 }
