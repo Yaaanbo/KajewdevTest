@@ -39,6 +39,15 @@ public class InventoryManager : MonoBehaviour
 
     public void OpenInventory()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         OpenInventoryUI?.Invoke(collectedItem);
+    }
+
+    public void CloseInventory()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

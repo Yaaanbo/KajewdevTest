@@ -10,6 +10,12 @@ public class ItemEffectManager : MonoBehaviour
     [field: SerializeField] public PlayerHealth playerHealth { get; set; }
     [field: SerializeField] public PlayerController playerController { get; set; }
 
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem healParticle;
+    [SerializeField] private ParticleSystem dotParticle;
+    [SerializeField] private ParticleSystem speedUpParticle;
+    [SerializeField] private ParticleSystem speedDownParticle;
+
     //UI Events
     public Action<float, float> OnHpUpdated;
 
@@ -23,16 +29,18 @@ public class ItemEffectManager : MonoBehaviour
 
     public void AddHealthPercentage(float _healthPercentage)
     {
+        if (playerHealth.health >= playerHealth.maxHealth) return;
+
         playerHealth.health += playerHealth.health * _healthPercentage / 100;
+        healParticle.Play();
 
         OnHpUpdated?.Invoke(playerHealth.health, playerHealth.maxHealth);
-
-        if (playerHealth.health >= playerHealth.maxHealth)
-            playerHealth.health = playerHealth.maxHealth;
     }
 
     public void AddHealthOverTime(int _healAmount, float _healDelay, float _hpToAdd)
     {
+        if (playerHealth.health >= playerHealth.maxHealth) return;
+
         StartCoroutine(HOTCouroutine());
 
         IEnumerator HOTCouroutine()
@@ -41,6 +49,7 @@ public class ItemEffectManager : MonoBehaviour
             {
                 _healAmount--;
                 playerHealth.health += _hpToAdd;
+                healParticle.Play();
                 OnHpUpdated?.Invoke(playerHealth.health, playerHealth.maxHealth);
 
                 if (playerHealth.health >= playerHealth.maxHealth)
@@ -56,6 +65,7 @@ public class ItemEffectManager : MonoBehaviour
 
     public void ApplyDamageOverTime(int _dotAmount, float _dotDelay, float _hpToSubtract)
     {
+        dotParticle.Play();
         StartCoroutine(DOTCoroutine());
 
         IEnumerator DOTCoroutine()
@@ -75,6 +85,8 @@ public class ItemEffectManager : MonoBehaviour
 
                 yield return new WaitForSeconds(_dotDelay);
             }
+
+            dotParticle.Stop();
         }
     }
 
@@ -84,8 +96,12 @@ public class ItemEffectManager : MonoBehaviour
 
         IEnumerator IncreaseSpeedCoroutine()
         {
+            speedUpParticle.Play();
             playerController.moveSpeed *= _speedMultiplier;
+            
             yield return new WaitForSeconds(_buffDuration);
+
+            speedUpParticle.Stop();
             playerController.moveSpeed /= _speedMultiplier;
         }
     }
@@ -96,8 +112,12 @@ public class ItemEffectManager : MonoBehaviour
 
         IEnumerator DecreaseSpeedCoroutine()
         {
+            speedDownParticle.Play();
             playerController.moveSpeed /= _speedDivisor;
+
             yield return new WaitForSeconds(_debuffDuration);
+
+            speedDownParticle.Stop();
             playerController.moveSpeed *= _speedDivisor;
         }
     }

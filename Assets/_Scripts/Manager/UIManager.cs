@@ -29,9 +29,6 @@ public class UIManager : MonoBehaviour
         {
             inventoryUI.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
             foreach(Transform child in itemUIObjParent)
             {
                 Destroy(child.gameObject);
@@ -90,9 +87,6 @@ public class UIManager : MonoBehaviour
         inventoryManager.OpenInventoryUI -= (List<BaseItem> _itemToDisplay) =>
         {
             inventoryUI.SetActive(true);
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
 
             foreach (Transform child in itemUIObjParent)
             {
